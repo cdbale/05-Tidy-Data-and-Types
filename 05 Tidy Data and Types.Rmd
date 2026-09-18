@@ -444,5 +444,5 @@ Recency, frequency, and monetary value form an RFM analysis. These files support
 
 ## Exercise 4: Submit
 
-Submit a Word document rendered from Quarto containing your definitions, code, results, and written interpretation. Decide which operations and sequence answer the client's questions; different defensible approaches are welcome. The two groups may overlap.
+Submit a Word document rendered from Quarto containing your definitions, code, results, and written interpretation. Decide which operations and sequence answer the client's questions; different defensible approaches are welcome. The two customer groups may overlap.
 
