@@ -1,9 +1,10 @@
 LECTURE 05 REVIEW - 2026-09-18
-Agent-authored review. New suggestions are pending; no silence implies approval.
+Agent-authored review. Items 1-7 and U1-U2 are Verified in Chat Completed.
+Items 8-11 remain pending by user request; Word regeneration is deferred.
 Choose Approve, Alter, or Reject for each numbered item.
 
 EXPLICITLY REQUESTED WORK - R1 VERIFIED; SEE CHAT COMPLETED
-INVENTORY AND REVIEW EVIDENCE
+ORIGINAL REVIEW INVENTORY - HISTORICAL SNAPSHOT BEFORE APPROVED EDITS
 - Verified repository boundary using Git metadata and its authoritative source:
   05 Tidy Data and Types.Rmd (ioslides_presentation, widescreen, style.css).
 - Existing outputs: index.html and 05-Tidy-Data-and-Types.html; identical SHA256
@@ -42,107 +43,6 @@ INVENTORY AND REVIEW EVIDENCE
   retain that design. No condensation review was requested or performed.
 
 NUMBERED SUGGESTIONS
-1. Add the required learning-goals slide.
-   Target: 05 Tidy Data and Types.Rmd, immediately after frontmatter/title,
-   before Attention to Detail (currently line 10).
-   Issue/evidence: Today's Learning Goals is absent; the opening is secular.
-   Change: goals covering tidy observations/variables, reshaping and dates,
-   appropriate classes/coercion, and reporting customer activity in Quarto.
-   Effect: required standing change when slide edits are approved; informs
-   items 6 and 11. Keep the exercise as the concluding activity.
-   Decision: PENDING - Approve / Alter / Reject. Status: Needs update.
-
-2. Correct Quarto instructions and supplementary reading references.
-   Target: slides, More About Quarto Docs (lines 22-43), Wrapping Up (line 414).
-   Issue/evidence: apostrophes are shown as code fences; YAML expansion is
-   outdated; R4DS 2e chapters 6 and 30 are workflow scripts and Quarto formats.
-   Change: show literal triple backticks, call YAML "YAML Ain't Markup
-   Language," and link to chapter 5 Data tidying and chapter 28 Quarto.
-   Effect: documentation only; coordinate the sample Exercise 5 title with 6.
-   Sources: https://quarto.org/docs/computations/r.html ; https://yaml.org/ ;
-   https://r4ds.hadley.nz/data-tidy.html ; https://r4ds.hadley.nz/quarto.html
-   Decision: PENDING - Approve / Alter / Reject. Status: Needs update.
-
-3. Correct the data-class/coercion and bar-chart explanations.
-   Target: slides Data Classes and Types/Coercion (305-335), bar-chart prose
-   (380-384); starter lines 155-177 and associated factor comments.
-   Issue/evidence: dates/factors are presented as storage types, all vectors
-   are said to require one type, and the starter claims as_tibble() restores
-   original element types. Rendered output correctly shows one character
-   column. geom_bar() is called a wrapper around count() and geom_col().
-   Change: distinguish atomic-vector types, classes, and columns; explain
-   that tibble conversion preserves the already-coerced character values;
-   explain factor-level order and geom_bar()'s automatic counting accurately.
-   Effect: matching slide/starter prose, preserving current teaching examples.
-   Source: https://ggplot2.tidyverse.org/reference/geom_bar.html
-   Decision: PENDING - Approve / Alter / Reject. Status: Needs update.
-
-4. Repair the ZIP-code coercion example without expanding its prerequisites.
-   Target: slides Your Turn/Desired Output/Code Solution (337-367), starter
-   Your Turn (180-196).
-   Issue/evidence: numeric literal 02138 has already become 2138; as.character()
-   cannot restore the zero. The published Desired Output visibly has "2138".
-   Change: retain the numeric-to-character exercise using a five-digit code
-   without a leading zero, then explicitly note that identifiers such as
-   "02138" must be read/stored as character from the outset.
-   Effect: matching slide code and starter input; preserve the empty student
-   answer chunk. No new padding function or prescribed live-coding solution.
-   Decision: PENDING - Approve / Alter / Reject. Status: Needs update.
-
-5. Clarify observations, transaction measures, and summary outputs.
-   Target: motivating/tidy-data/pivot slides, month/date summaries, Live Coding
-   Exercise; matching starter comments and code.
-   Issue/evidence: these files contain purchase counts, not revenue; the
-   reshaped row is customer-month, not an individual transaction. The starter
-   says the month summary pinpoints each region's top month but code returns
-   all 48 month-region combinations. Published summaries emit grouping text.
-   Change: identify customer-month as the analytical observation; explain that
-   longer/wider depends on the variables and task; describe purchase activity
-   and per-customer monthly averages precisely. Add .groups = "drop" to the
-   multi-key summaries, as taught in lecture 04, and accurate starter comments.
-   Keep live coding open-ended: ask which activity measure/time period tells
-   Patagonia a useful story and which assumptions affect the interpretation.
-   Effect: synchronize slides and starter; supports 6 and precedes 7/10.
-   Decision: PENDING - Approve / Alter / Reject. Status: Needs update.
-
-6. Align Exercise 4 and its solution with the historical data and Canvas.
-   Target: concluding Exercise 5 slide (418 onward), YAML example title,
-   Exercise 05 Solution.qmd and existing Exercise 05 Solution.docx.
-   Issue/evidence: local numbering is 5 but the next Canvas task is Exercise 4.
-   The prompt omits input filenames, historical reference period, and the
-   meaning of a composition report. The solution defines recency as >10
-   purchases in 2018, mixing timing and frequency. It says "most" are female,
-   although females are 1,996/4,037 (49.4%) and 1,505/3,046 (49.4%). Age is
-   calculated in 2026 without explaining its relation to 2018 transactions.
-   Change: use Exercise 4 consistently; give both CSV names and the Dec 2018
-   endpoint; leave recency windows/frequency thresholds to students. Request
-   segment sizes, one demographic/financial summary or chart per segment,
-   interpretation and a limitation, with code in a Word report from Quarto.
-   Revise the worked recency example to at least one purchase in a stated
-   recent window (e.g. Oct-Dec 2018); retain a justified frequency threshold.
-   Recheck results/prose, describe approximate age in 2026 explicitly, and
-   preserve the existing five-point rubric while allowing defensible choices.
-   Rename source to Exercise-04-Solution.qmd; synchronize/rename the DOCX only
-   if its regeneration is approved. Do not leave a stale solution for upload.
-   Effect: changes the worked recency cohort, not the taught concepts; requires
-   approval of that emphasis. Dependencies: 1/5 -> 6 -> 8/9/11.
-   Decision: PENDING - Approve / Alter / Reject. Status: Needs update.
-
-7. Replace one of two eligible prior-material starter steps with a prompt.
-   Target: 05-starter-code.qmd, monthly regional summary chunk (105-116).
-   Evidence: lecture 04 teaches group_by(), summarize(sum/mean), arrange(),
-   desc(), and .groups. Two complete eligible steps remain: regional summary
-   (49-63) and monthly regional summary (105-116). Setup is already blank.
-   Change: remove the entire latter calculation and replace it with an intact
-   empty chunk asking for each month's regional total and average purchase
-   activity, ordered by the average. Retain the first summary as a reference.
-   Exclude Your Turn tasks, pivots, separate/unite, class/coercion/factor
-   examples, and the time-series block containing new scale_x_date() syntax.
-   This removes 1/2 eligible steps (50%) without breaking later object setup.
-   Effect: implement after 5 so comments/code are not edited twice; then run
-   parse/setup checks and include the final starter in 10.
-   Decision: PENDING - Approve / Alter / Reject. Status: Needs update.
-
 8. Post the finalized exercise in Canvas Exercise 4.
    Target: https://byu.instructure.com/courses/38688/assignments/1452127
    Issue/evidence: description says no additional details were added.
@@ -189,19 +89,39 @@ NUMBERED SUGGESTIONS
     Decision: PENDING - Approve / Alter / Reject.
     Status: Needs update (URL); Blocked (future revised slide output).
 
-SKILL CHECKLIST AUDIT
-1 Slides: Needs update - suggestions 1-5, exercise alignment in 6.
-2 Exercise: Needs update - suggestion 6; placement already correct.
-3 Starter alignment: Needs update - suggestions 3-5; current syntax parses.
-4 Prior-material reduction: Needs update - suggestion 7, previous lessons read.
-5 Canvas exercise: Needs update - suggestion 8, blank assignment verified.
-6 Canvas rubric note: Needs update - suggestion 9; local rubric exists.
-7 Canvas starter upload: Needs update - suggestion 10, local artifact exists.
-8 GitHub: Verified - review records pushed in d5479bd; HEAD, origin/main and
-  live refs/heads/main matched; working tree clean. See Chat Completed.
-9 Canvas Pages hyperlink: Needs update; future changed deck blocked pending
-  approved edits and an explicit render request or user-supplied rendered HTML.
-The full lecture update is not complete; the new suggestions await decisions.
+SKILL CHECKLIST AUDIT - AFTER APPROVED SOURCE EDITS
+1 Slides: Verified - items 1-5 and U1-U2 completed in source; no render requested.
+2 Exercise: Verified - item 6 completed in Quarto source; brief matches slides,
+  ends the lecture, retains five-point rubric. Word output explicitly deferred.
+3 Starter alignment: Verified - matching inputs/code/comments and R checks.
+4 Prior-material reduction: Verified - both eligible steps removed as requested.
+5 Canvas exercise: Needs update - item 8 remains pending by user request.
+6 Canvas rubric note: Needs update - item 9 remains pending by user request.
+7 Canvas starter upload: Needs update - item 10 remains pending by user request.
+8 GitHub: authorized source and tracking edits prepared for commit/push; inspect
+  the resulting commit and remote equality before reporting completion.
+9 Canvas Pages hyperlink: Needs update - item 11 remains pending by user request.
+  Revised slides are not rendered/published; existing HTML is unchanged.
+Word solution: deferred by user; Exercise 05 Solution.docx is the old version.
+No approved source work remains active. Full publication remains incomplete.
 
+USER DECISION HISTORY
+The user's section below is preserved verbatim as the approval record; completed
+requests have been archived above and are not duplicate active tasks.
 USER REQUESTED CHANGES - PRESERVE THIS SECTION
 Add requests or decisions here after discussing the numbered suggestions.
+
+- remove current slide 2 (debugging image)
+- remove current slide 3 (debugging comic with green ball)
+- Approve Change #1
+- Approve Change #2 conditional on you providing additional clarification on what you mean by: "coordinate the sample Exercise 5 title with 6"
+- Approve Change #3
+- Approve Change #4
+- Approve Change #5
+- Approve Change #6
+- Approve Change #7, with the adjustment that you replace BOTH prior-material starter steps with prompts. Since we have so few that consist of prior material, let's do both.
+
+Leave other changes as pending.
+
+
+END OF USER DECISION HISTORY

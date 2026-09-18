@@ -21,3 +21,151 @@ After fetch, HEAD, origin/main and live refs/heads/main matched that commit;
 the working tree was clean. These completion notes receive a closeout commit.
 All eleven new suggestions remain pending in Chat To Do. No content edits,
 Canvas writes, or renders were performed. Rename R1 has no active duplicate.
+
+APPROVED SOURCE UPDATE - 2026-09-18
+Items 1-7 below retain their review descriptions; agreed scope and verification
+notes following them govern the completed implementation.
+1. Add the required learning-goals slide.
+   Target: 05 Tidy Data and Types.Rmd, immediately after frontmatter/title,
+   before Attention to Detail (currently line 10).
+   Issue/evidence: Today's Learning Goals is absent; the opening is secular.
+   Change: goals covering tidy observations/variables, reshaping and dates,
+   appropriate classes/coercion, and reporting customer activity in Quarto.
+   Effect: required standing change when slide edits are approved; informs
+   items 6 and 11. Keep the exercise as the concluding activity.
+   Decision: Approve - user approved in Chat To Do. Status: Verified.
+
+2. Correct Quarto instructions and supplementary reading references.
+   Target: slides, More About Quarto Docs (lines 22-43), Wrapping Up (line 414).
+   Issue/evidence: apostrophes are shown as code fences; YAML expansion is
+   outdated; R4DS 2e chapters 6 and 30 are workflow scripts and Quarto formats.
+   Change: show literal triple backticks, call YAML "YAML Ain't Markup
+   Language," and link to chapter 5 Data tidying and chapter 28 Quarto.
+   Effect: documentation only; coordinate the sample Exercise 5 title with 6.
+   Sources: https://quarto.org/docs/computations/r.html ; https://yaml.org/ ;
+   https://r4ds.hadley.nz/data-tidy.html ; https://r4ds.hadley.nz/quarto.html
+   Decision: Approve - user approved in Chat To Do. Status: Verified.
+
+3. Correct the data-class/coercion and bar-chart explanations.
+   Target: slides Data Classes and Types/Coercion (305-335), bar-chart prose
+   (380-384); starter lines 155-177 and associated factor comments.
+   Issue/evidence: dates/factors are presented as storage types, all vectors
+   are said to require one type, and the starter claims as_tibble() restores
+   original element types. Rendered output correctly shows one character
+   column. geom_bar() is called a wrapper around count() and geom_col().
+   Change: distinguish atomic-vector types, classes, and columns; explain
+   that tibble conversion preserves the already-coerced character values;
+   explain factor-level order and geom_bar()'s automatic counting accurately.
+   Effect: matching slide/starter prose, preserving current teaching examples.
+   Source: https://ggplot2.tidyverse.org/reference/geom_bar.html
+   Decision: Approve - user approved in Chat To Do. Status: Verified.
+
+4. Repair the ZIP-code coercion example without expanding its prerequisites.
+   Target: slides Your Turn/Desired Output/Code Solution (337-367), starter
+   Your Turn (180-196).
+   Issue/evidence: numeric literal 02138 has already become 2138; as.character()
+   cannot restore the zero. The published Desired Output visibly has "2138".
+   Change: retain the numeric-to-character exercise using a five-digit code
+   without a leading zero, then explicitly note that identifiers such as
+   "02138" must be read/stored as character from the outset.
+   Effect: matching slide code and starter input; preserve the empty student
+   answer chunk. No new padding function or prescribed live-coding solution.
+   Decision: Approve - user approved in Chat To Do. Status: Verified.
+
+5. Clarify observations, transaction measures, and summary outputs.
+   Target: motivating/tidy-data/pivot slides, month/date summaries, Live Coding
+   Exercise; matching starter comments and code.
+   Issue/evidence: these files contain purchase counts, not revenue; the
+   reshaped row is customer-month, not an individual transaction. The starter
+   says the month summary pinpoints each region's top month but code returns
+   all 48 month-region combinations. Published summaries emit grouping text.
+   Change: identify customer-month as the analytical observation; explain that
+   longer/wider depends on the variables and task; describe purchase activity
+   and per-customer monthly averages precisely. Add .groups = "drop" to the
+   multi-key summaries, as taught in lecture 04, and accurate starter comments.
+   Keep live coding open-ended: ask which activity measure/time period tells
+   Patagonia a useful story and which assumptions affect the interpretation.
+   Effect: synchronize slides and starter; supports 6 and precedes 7/10.
+   Decision: Approve - user approved in Chat To Do. Status: Verified.
+
+6. Align Exercise 4 and its solution with the historical data and Canvas.
+   Target: concluding Exercise 5 slide (418 onward), YAML example title,
+   Exercise 05 Solution.qmd and existing Exercise 05 Solution.docx.
+   Issue/evidence: local numbering is 5 but the next Canvas task is Exercise 4.
+   The prompt omits input filenames, historical reference period, and the
+   meaning of a composition report. The solution defines recency as >10
+   purchases in 2018, mixing timing and frequency. It says "most" are female,
+   although females are 1,996/4,037 (49.4%) and 1,505/3,046 (49.4%). Age is
+   calculated in 2026 without explaining its relation to 2018 transactions.
+   Change: use Exercise 4 consistently; give both CSV names and the Dec 2018
+   endpoint; leave recency windows/frequency thresholds to students. Request
+   segment sizes, one demographic/financial summary or chart per segment,
+   interpretation and a limitation, with code in a Word report from Quarto.
+   Revise the worked recency example to at least one purchase in a stated
+   recent window (e.g. Oct-Dec 2018); retain a justified frequency threshold.
+   Recheck results/prose, describe approximate age in 2026 explicitly, and
+   preserve the existing five-point rubric while allowing defensible choices.
+   Rename source to Exercise-04-Solution.qmd; synchronize/rename the DOCX only
+   if its regeneration is approved. Do not leave a stale solution for upload.
+   Effect: changes the worked recency cohort, not the taught concepts; requires
+   approval of that emphasis. Dependencies: 1/5 -> 6 -> 8/9/11.
+   Decision: Approve - user approved in Chat To Do. Status: Verified.
+
+7. Replace one of two eligible prior-material starter steps with a prompt.
+   Target: 05-starter-code.qmd, monthly regional summary chunk (105-116).
+   Evidence: lecture 04 teaches group_by(), summarize(sum/mean), arrange(),
+   desc(), and .groups. Two complete eligible steps remain: regional summary
+   (49-63) and monthly regional summary (105-116). Setup is already blank.
+   Change: remove the entire latter calculation and replace it with an intact
+   empty chunk asking for each month's regional total and average purchase
+   activity, ordered by the average. Retain the first summary as a reference.
+   Exclude Your Turn tasks, pivots, separate/unite, class/coercion/factor
+   examples, and the time-series block containing new scale_x_date() syntax.
+   This removes 1/2 eligible steps (50%) without breaking later object setup.
+   Effect: implement after 5 so comments/code are not edited twice; then run
+   parse/setup checks and include the final starter in 10.
+   Decision: Approve - user approved in Chat To Do. Status: Verified.
+
+AGREED SCOPE AND VERIFICATION FOR ITEMS 1-7
+- Item 2: conditional clarification supplied to the user before editing:
+  "coordinate the sample Exercise 5 title with 6" meant changing the YAML
+  example title to Exercise 4, consistent with the approved item 6 numbering.
+- Item 7: Alter/Approve - user explicitly requested BOTH prior-material steps,
+  overriding the proposed 1/2 reduction. Replaced both regional and monthly
+  regional summary calculations with intact empty chunks and result-focused
+  prompts. Removed 2/2 eligible steps (100%); new concepts and Your Turn gaps
+  retained. This is a lecture-specific exception, not a skill-wide change.
+- Item 6: user clarified "Update Quarto source only for now." Renamed and
+  updated Exercise-04-Solution.qmd; Word regeneration/renaming deferred.
+  Existing Exercise 05 Solution.docx is unchanged and stale; do not upload it
+  as the finalized Exercise 4 solution. No Word or slide render performed.
+- Sources: 05 Tidy Data and Types.Rmd, 05-starter-code.qmd, and
+  Exercise-04-Solution.qmd. Exact exercise brief matches between slides and
+  solution; exercise is the final activity. Live-coding prompt remains open.
+- R verification with the user's installed tidyverse: all 28 slide chunks,
+  21 starter chunks, and eight solution chunks parsed and evaluated. Starter
+  setup was supplied only in an isolated check environment; all seven intended
+  empty chunks remained empty in the file. Eleven ggplot specifications were
+  built for validation without drawing or rendering any document.
+- Slide and starter crm_long outputs identical: 126,372 rows, valid Date column.
+  Five-digit ZIP example verified; atomic-vector coercion remains character.
+- Solution results: recent = 8,443 customers (Oct-Dec 2018 purchases > 0),
+  frequent = 3,046 (Jan 2005-Dec 2018 purchases > 150). Count ranges 1-15 and
+  151-254; median incomes $138,000/$139,000; median credit approximately 667
+  in both groups; median approximate age in 2026 = 45. Categorical percentages
+  and profile interpretation checked against computed counts.
+- Both published HTML files remain byte-identical to their pre-edit versions:
+  SHA256 CA95582735197D75E2E3CE1101A90BEC9B2564D3C4BD6FBFC5CD48A3650B7375.
+  Word file SHA256 276BF2FC56501D166AAC3662B54E0AB7CC95D11B16C845D23B4EB027D9AC3356.
+- Items 8-11 remain pending per user. No Canvas edits made. Existing .Rhistory
+  is unrelated user work and excluded from staging/commits.
+
+U1. Remove original slide 2, the debugging image.
+Decision: Approve - explicitly requested in Chat To Do. Status: Verified.
+Removed Attention to Detail and its meme_debugging.png reference from the Rmd.
+Image asset retained; generated HTML intentionally unchanged.
+
+U2. Remove original slide 3, the debugging comic with the green ball.
+Decision: Approve - explicitly requested in Chat To Do. Status: Verified.
+Removed the second image-only slide and monsters_debugging.png reference.
+Image asset retained. Today's Learning Goals now immediately follows the title.

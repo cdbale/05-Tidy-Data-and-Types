@@ -7,25 +7,20 @@ output:
     css: style.css
 ---
 
-## Attention to Detail
+## Today's Learning Goals
 
-<center>
-![](Figures/meme_debugging.png){width=800px}
-</center>
-
----
-
-<center>
-![](Figures/monsters_debugging.png){width=850px}
-</center>
+- Identify observations and variables in tidy data.
+- Reshape data and construct dates for summaries and plots.
+- Choose appropriate data classes and explain coercion.
+- Report recent and frequent customer activity in Quarto.
 
 ## More About Quarto Docs - YAML
 
-The header at the top of a Quarto document is coded in **YAML** (Yet Another Markup Language).
+The header at the top of a Quarto document is coded in **YAML** (YAML Ain't Markup Language).
 
 ```
 ---
-title: "Exercise 5"
+title: "Exercise 4"
 author: "Cameron Bale"
 format: docx
 ---
@@ -34,7 +29,7 @@ format: docx
 ## More About Quarto Docs - Quarto Best Practices
 
 - Use `##` headings and `###` sub-headings to clearly identify sections.
-- Code cells begin with `'''{r}` and end with `'''` and should include *comments* but not *text*.
+- Code cells begin with ```` ```{r} ```` and end with ```` ``` ````. Put code and `#` comments inside; write explanatory text outside.
 - Use a separate code cell for every task so that output and text can be provided *in-line*.
 - Produce bullet points using '-'.
 - Identify `functions` and `data` with `s, *italics* with *s, and **bold** with **s.
@@ -44,7 +39,7 @@ format: docx
 
 ## Motivating Example
 
-Patagonia has requested a report on sales trends over time. What are some statistics we could compute to support this analysis? How could we compute these statistics using the Patagonia sales data?
+Patagonia wants to understand trends in customer purchase activity over time. The transaction file contains monthly purchase counts from January 2005 through December 2018. What measures would help tell that story?
 
 ---
 
@@ -53,7 +48,7 @@ Patagonia has requested a report on sales trends over time. What are some statis
 
 ## This Data is Problematic!
 
-The current data format won't allow us to perform many of the calculations we want using `tidyverse` functions.
+The current format stores each month's purchase counts in a separate column. A different arrangement would make some summaries easier to compute.
 
 - How do we compute the total transactions per year?
 - How do we compute the number of transactions for each customer?
@@ -100,7 +95,7 @@ crm_data |>
 - Each variable has its own column.
 - Each value has its own cell.
 
-This may seem obvious or simple, but this common philosophy is at the heart of the *tidy*verse. It also means we will often prefer **longer** datasets to **wider** datasets and {tidyr} will help us move between the two.
+For monthly purchase activity, one observation is one **customer in one month**. Month and purchase count are separate variables. This calls for a **longer** dataset. Whether a longer or wider layout is appropriate depends on the variables and the task; {tidyr} helps us move between them.
 
 ---
 
@@ -110,7 +105,7 @@ This may seem obvious or simple, but this common philosophy is at the heart of t
 
 ## Pivot Longer
 
-The most common identifying feature of **messy data** is when column names are really values.
+One sign that data needs reshaping is when column names contain values of a variable. Here, `jan_2018` and `feb_2018` are values of the month variable.
 
 ```{r}
 crm_data |> 
@@ -133,7 +128,7 @@ crm_long <- crm_data |>
 
 ---
 
-Note how much *longer* the data frame is and *why*.
+Each row now represents a customer-month, including months with zero purchases. There are 12 rows per customer for 2018.
 
 ```{r}
 crm_long
@@ -141,7 +136,7 @@ crm_long
 
 ---
 
-Now summarizing the transactions for 2018 by region is trivial.
+We can now summarize purchase activity in 2018 by region. The mean is the average number of purchases **per customer per month**, including zero-purchase months.
 
 ```{r}
 crm_long |> 
@@ -154,7 +149,7 @@ crm_long |>
 
 ## Pivot Wider
 
-If the data has the opposite problem and has values that should really be column names, use `pivot_wider()` to pivot the data frame wider by **turning values into column names**.
+Use `pivot_wider()` to turn values into column names when the task calls for a wider layout. Here, we can reconstruct one row per customer with a separate purchase-count column for each month.
 
 ```{r}
 crm_long |> 
@@ -238,14 +233,15 @@ crm_long
 
 ---
 
-Now we can summarize the transactions for 2018 by region *and* month.
+Now we can summarize purchase activity for every region-month in 2018 and order the 48 combinations by average purchases per customer.
 
 ```{r}
 crm_long |> 
   group_by(month, region) |> 
   summarize(
     total_transactions = sum(transactions),
-    avg_transactions = mean(transactions)
+    avg_transactions = mean(transactions),
+    .groups = "drop"
   ) |> 
   arrange(desc(avg_transactions))
 ```
@@ -274,14 +270,15 @@ crm_long
 
 ---
 
-With a long data frame and a `date` column, we can plot a time series of transactions.
+With a long data frame and a `date` column, we can plot average monthly purchases per customer in each region.
 
 ```{r eval=FALSE}
 crm_long |> 
   group_by(date, region) |> 
   summarize(
     total_transactions = sum(transactions),
-    avg_transactions = mean(transactions)
+    avg_transactions = mean(transactions),
+    .groups = "drop"
   ) |> 
   ggplot(aes(x = date, y = avg_transactions, color = region)) +
   geom_line() +
@@ -295,7 +292,8 @@ crm_long |>
   group_by(date, region) |> 
   summarize(
     total_transactions = sum(transactions),
-    avg_transactions = mean(transactions)
+    avg_transactions = mean(transactions),
+    .groups = "drop"
   ) |> 
   ggplot(aes(x = date, y = avg_transactions, color = region)) +
   geom_line() +
@@ -304,9 +302,9 @@ crm_long |>
 
 ## Data Classes and Types
 
-We've been using **data frames** (technically **tibbles**, a modern data frame). A data frame is composed of columns called **vectors**. Both data frames and vectors are classes of data.
+We've been using **tibbles**, a modern form of **data frame**. Each column is a vector. The columns can have different types, while the elements within an **atomic vector** share one storage type, such as double, integer, or character.
 
-Each vector has a *single* data type. We've discussed **double** (i.e., numeric), **integer**, **date**, **character**, and **factor**. If we try to mix data types in a vector, R will *coerce* one data type to match the other.
+**Classes** add meaning and behavior: a `Date` represents dates, and a factor represents categories using integer codes and named levels. Combining numbers and text with `c()` **coerces** these values to character:
 
 ```{r}
 vector_example <- c(1, 2, "three")
@@ -324,13 +322,13 @@ tibble(id = 1:3, state = "AZ")
 
 ## Coercion
 
-Sometimes we need to **coerce** a data class or type.
+Sometimes we need to change an object's form. `as_tibble()` puts this vector into a one-column tibble:
 
 ```{r}
 as_tibble(vector_example)
 ```
 
-Why would we want to coerce a data class?
+The column is still character. Converting to a tibble does not recover the original numeric values or their types. When would a table be more useful than a vector?
 
 We can similarly coerce data types with `as.*()` functions (e.g., `as.numeric()` and `as.character()`).
 
@@ -340,7 +338,7 @@ Suppose you are building a ggplot visualization that shows the distributions of 
 
 ```{r}
 
-zip_codes <- c(30301, 60614, 90210, 10001, 73301, 02138, 44101, 84101, 19104, 96815)
+zip_codes <- c(30301, 60614, 90210, 10001, 73301, 15213, 44101, 84101, 19104, 96815)
 
 glimpse(zip_codes)
 
@@ -368,7 +366,9 @@ glimpse(zip_codes)
 
 ---
 
-We often want to coerce factors using the `fct_*()` functions.
+Store identifiers such as `"02138"` as character from the outset. Once a leading zero is lost in numeric storage, `as.character()` cannot restore it.
+
+The `fct_*()` functions help create factors and manage the order of their levels. Here, the most common region comes first:
 
 ```{r}
 crm_data |> 
@@ -379,9 +379,9 @@ crm_data |>
 
 ---
 
-Note that `geom_bar()` is a wrapper for both `count()` and `geom_col()` (i.e., only a single variable is needed and the count is performed as part of the plot).
+By default, `geom_bar()` counts observations at each x value using `stat_count()`. Use `geom_col()` when the bar heights have already been calculated, as in a table produced by `count()`.
 
-We've already used `fct_reorder()` to coerce a factor ordered by another variable. Now we've used `fct_infreq()` to coerce a factor ordered by frequency and, if you like, `fct_rev()` to reverse that order.
+We've used `fct_reorder()` to order factor levels by another variable. `fct_infreq()` orders levels by frequency; `fct_rev()` reverses their order. These functions change the category order used by the plot, not the row order.
 
 ---
 
@@ -395,7 +395,11 @@ crm_data |>
 
 ## Live Coding Exercise
 
-Let's return to the motivating example. Patagonia has requested a report on sales trends over time. Let's put together a plot to go in that report.
+Patagonia wants a plot that tells a useful story about customer purchase activity over time using these historical records.
+
+- Which measure and time period would be useful to the client?
+- How should we interpret an increase in purchase activity?
+- Which assumptions or limitations could change our interpretation?
 
 ## Wrapping Up
 
@@ -411,15 +415,26 @@ Let's return to the motivating example. Patagonia has requested a report on sale
 
 *Supplementary Material*
 
-- *R for Data Science (2e)* Chapters 6 and 30
+- *R for Data Science (2e)*: [5 Data tidying](https://r4ds.hadley.nz/data-tidy.html) and [28 Quarto](https://r4ds.hadley.nz/quarto.html).
 
 *Artwork by @allison_horst*
 
-## Exercise 5
+## Exercise 4: Recent and Frequent Customers
 
-Customers are often analyzed based on those who have made recent purchases, frequent purchases, and spent the most. This is known as a recency, frequency, monetary (RFM) analysis. Now that we can tidy data, we can analyze customers based on recent purchases and frequent purchases. In RStudio, create a new Quarto document and do the following.
+Patagonia wants to understand customers who purchased recently and those who purchased frequently before planning customer outreach.
 
-1. How would you define customers who have made "recent" purchases? State how you are defining recency, and use R to report on the composition of these customers.
-2. How would you define customers who have made "frequent" purchases? State how you are defining frequency, and use R to report on the composition of these customers.
-3. Render the Quarto document into Word and upload to Canvas.
+Use `customer_data.csv` and `store_transactions.csv`. The files describe the same customers, identified by `customer_id`; monthly purchase counts run from January 2005 through December 2018. Treat December 2018 as the endpoint for evaluating activity.
+
+Recency, frequency, and monetary value form an RFM analysis. These files support recency and frequency; purchase counts do not measure money spent.
+
+## Exercise 4: The Client Report
+
+- Define and justify a recent-customer group using purchase timing relative to the data endpoint. Choose your own recent window.
+- Define and justify a frequent-customer group using purchase counts over a stated period. Choose your own threshold.
+- For each group, report its size and include at least one demographic or financial summary or chart, with an interpretation of the customers' profiles.
+- Explain one limitation of using these historical groups for customer outreach. If you report age, state the reference year and that it is approximate.
+
+## Exercise 4: Submit
+
+Submit a Word document rendered from Quarto containing your definitions, code, results, and written interpretation. Decide which operations and sequence answer the client's questions; different defensible approaches are welcome. The two groups may overlap.
 

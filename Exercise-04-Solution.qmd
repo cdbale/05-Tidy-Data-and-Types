@@ -1,0 +1,212 @@
+---
+title: "Exercise 4 Solution"
+format: docx
+---
+
+
+## Exercise 4: Recent and Frequent Customers
+
+Patagonia wants to understand customers who purchased recently and those who purchased frequently before planning customer outreach.
+
+Use `customer_data.csv` and `store_transactions.csv`. The files describe the same customers, identified by `customer_id`; monthly purchase counts run from January 2005 through December 2018. Treat December 2018 as the endpoint for evaluating activity.
+
+Recency, frequency, and monetary value form an RFM analysis. These files support recency and frequency; purchase counts do not measure money spent.
+
+## Exercise 4: The Client Report
+
+- Define and justify a recent-customer group using purchase timing relative to the data endpoint. Choose your own recent window.
+- Define and justify a frequent-customer group using purchase counts over a stated period. Choose your own threshold.
+- For each group, report its size and include at least one demographic or financial summary or chart, with an interpretation of the customers' profiles.
+- Explain one limitation of using these historical groups for customer outreach. If you report age, state the reference year and that it is approximate.
+
+## Exercise 4: Submit
+
+Submit a Word document rendered from Quarto containing your definitions, code, results, and written interpretation. Decide which operations and sequence answer the client's questions; different defensible approaches are welcome. The two groups may overlap.
+
+## Grading Rubric
+
+**Five points total, one point each for:**
+
+- **Tidy and transform the data to identify recent customers.** State and justify a recent window relative to December 2018, and correctly identify and count the qualifying customers.
+- **Explore the composition of recent customers and provide an explanation.** Include at least one demographic or financial summary or chart and interpret it.
+- **Tidy and transform the data to identify frequent customers.** State and justify a purchase-count threshold and observation period, and correctly identify and count the qualifying customers.
+- **Explore the composition of frequent customers and provide an explanation.** Include at least one demographic or financial summary or chart and interpret it. Across the two profiles, explain a limitation of using these historical groups for outreach; label the reference year for any approximate age.
+- **Submitting a rendered Word document.**
+
+The example below is one defensible solution. Award credit for other justified windows, thresholds, customer characteristics, and analysis approaches that meet the brief. Students do not need to reproduce every chart below or match these group sizes when their definitions differ.
+
+## Recency
+
+For one possible definition of recency, identify customers with at least one purchase in October-December 2018, the final quarter available. This uses purchase timing to identify recent activity, without requiring a high purchase count.
+
+```{r}
+# Load packages.
+library(tidyverse)
+```
+
+```{r}
+# Import data.
+crm_data <- read_csv("customer_data.csv", show_col_types = FALSE) |>
+  left_join(read_csv("store_transactions.csv", show_col_types = FALSE), join_by(customer_id))
+```
+
+```{r}
+# Identify customers with any purchase in the final quarter of 2018.
+recent_cust <- crm_data |>
+  select(customer_id, oct_2018:dec_2018) |>
+  pivot_longer(
+    -customer_id,
+    names_to = "month_year",
+    values_to = "transactions"
+  ) |>
+  group_by(customer_id) |>
+  summarize(total_transactions = sum(transactions)) |>
+  filter(total_transactions > 0)
+
+recent_cust
+
+recent_cust |> summarize(n_customers = n())
+```
+
+This definition identifies **8,443 customers**. Here, `total_transactions` counts purchases in October-December 2018. We can join their customer profiles and explore the group's composition. Approximate age below means **2026 minus birth year**, not age at the time of those purchases.
+
+```{r}
+# Join crm_data with recent_cust.
+recent_cust <- recent_cust |>
+  left_join(crm_data, join_by(customer_id)) |>
+  mutate(approx_age_2026 = 2026 - birth_year)
+
+recent_cust |>
+  summarize(
+    median_income = median(income),
+    median_credit = median(credit),
+    median_approx_age_2026 = median(approx_age_2026)
+  )
+
+# Explore distributions of numeric variables, including discrete purchase counts.
+recent_cust |>
+  select(total_transactions, income, credit, approx_age_2026) |>
+  pivot_longer(
+    total_transactions:approx_age_2026,
+    names_to = "var_names",
+    values_to = "var_values"
+  ) |>
+  ggplot(aes(x = var_values)) +
+  geom_histogram() +
+  facet_wrap(~ var_names, scales = "free") +
+  labs(x = "Numeric Variables",
+       y = "Count",
+       title = "Numeric Distributions for Recent Customers")
+```
+
+For these recent customers, median income is **$138,000**, median credit score is approximately **667**, and median approximate age in 2026 is **45**. Their final-quarter purchase counts range from **1 to 15**. These summaries describe the selected customers; they do not establish why those customers purchased recently.
+
+```{r}
+# Explore distributions of discrete variables.
+recent_cust |> count(gender)
+recent_cust |> count(married)
+recent_cust |> count(college_degree)
+recent_cust |> count(region)
+
+recent_cust |>
+  select(gender, married, college_degree, region) |>
+  pivot_longer(
+    gender:region,
+    names_to = "var_names",
+    values_to = "var_values"
+  ) |>
+  ggplot(aes(x = var_values)) +
+  geom_bar() +
+  facet_wrap(~ var_names, scales = "free") +
+  labs(x = "Categorical Variables",
+       y = "Count",
+       title = "Categorical Variable Distributions for Recent Customers")
+```
+
+About **73.8%** of recent customers have a college degree and **54.4%** are unmarried. Female is the largest gender category at **4,221 of 8,443**, approximately half. The West (**48.4%**) and Northeast (**30.2%**) account for the largest regional shares. These are the customers' recorded regions; the analysis does not identify the locations of individual purchases.
+
+## Frequency
+
+For one possible definition of frequency, identify customers with **more than 150 purchases from January 2005 through December 2018**. This selects a high total across the available history: 150 purchases is about 11 per year over 14 years. It does not require regular or recent purchases, and the long window may favor customers observed for more years.
+
+```{r}
+# Tidy and summarize purchase history and filter on respondents
+# who have made more than 150 transactions overall.
+frequent_cust <- crm_data |>
+  select(customer_id, jan_2005:dec_2018) |>
+  pivot_longer(
+    -customer_id,
+    names_to = "month_year",
+    values_to = "transactions"
+  ) |>
+  group_by(customer_id) |>
+  summarize(total_transactions = sum(transactions)) |>
+  filter(total_transactions > 150)
+
+frequent_cust
+
+frequent_cust |> summarize(n_customers = n())
+```
+
+This definition identifies **3,046 customers**. Here, `total_transactions` counts purchases across the full 2005-2018 history, so its values are not directly comparable to the recent group's final-quarter counts. Join the customer profiles to explore their composition.
+
+```{r}
+# Join crm_data with frequent_cust.
+frequent_cust <- frequent_cust |>
+  left_join(crm_data, join_by(customer_id)) |>
+  mutate(approx_age_2026 = 2026 - birth_year)
+
+frequent_cust |>
+  summarize(
+    median_income = median(income),
+    median_credit = median(credit),
+    median_approx_age_2026 = median(approx_age_2026)
+  )
+
+# Explore distributions of numeric variables, including discrete purchase counts.
+frequent_cust |>
+  select(total_transactions, income, credit, approx_age_2026) |>
+  pivot_longer(
+    total_transactions:approx_age_2026,
+    names_to = "var_names",
+    values_to = "var_values"
+  ) |>
+  ggplot(aes(x = var_values)) +
+  geom_histogram() +
+  facet_wrap(~ var_names, scales = "free") +
+  labs(x = "Numeric Variables",
+       y = "Count",
+       title = "Numeric Distributions for Frequent Customers")
+```
+
+Frequent customers have median income of **$139,000**, median credit score of approximately **667**, and median approximate age in 2026 of **45**. These medians are similar to the recent group's. Their full-history purchase counts range from **151 to 254**.
+
+```{r}
+# Explore distributions of discrete variables.
+frequent_cust |> count(gender)
+frequent_cust |> count(married)
+frequent_cust |> count(college_degree)
+frequent_cust |> count(region)
+
+frequent_cust |>
+  select(gender, married, college_degree, region) |>
+  pivot_longer(
+    gender:region,
+    names_to = "var_names",
+    values_to = "var_values"
+  ) |>
+  ggplot(aes(x = var_values)) +
+  geom_bar() +
+  facet_wrap(~ var_names, scales = "free") +
+  labs(x = "Categorical Variables",
+       y = "Count",
+       title = "Categorical Variable Distributions for Frequent Customers")
+```
+
+About **73.8%** of frequent customers have a college degree and **54.1%** are unmarried. Female is the largest gender category at **49.4%**, not a majority. The West (**48.3%**) and Northeast (**30.5%**) again account for the largest regional shares.
+
+## Interpretation and Limitations
+
+The two definitions identify different kinds of activity, and the groups can overlap. Their similar demographic and financial profiles offer limited evidence for giving them different outreach messages. A comparison with all customers would help determine whether these profiles are distinctive.
+
+"Recent" here is relative to December 2018. These records do not establish who is active today or who would respond to a campaign. The frequency threshold also ignores differences in how long customers have been observed, and purchase counts cannot tell us how much money customers spent. Different defensible windows or thresholds will change the groups.

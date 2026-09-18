@@ -24,7 +24,7 @@ editor: visual
 
 ```{r}
 
-# This code shows the region and customer ID corresponding with every transaction in 2018
+# Display each customer's region, ID, and monthly purchase counts for 2018.
 
 crm_data |> 
   select(region, customer_id, contains("2018"))
@@ -34,7 +34,8 @@ crm_data |>
 
 ```{r}
 
-# This code pivots the 2018 transactions into a tidy format. The column names (e.g. "jan_2018") become values in a new column called "month_year," and the transactions get their own column.
+# Each row will represent one customer in one month, including zero-purchase months.
+# Month names (e.g. "jan_2018") become values in "month_year"; "transactions" holds purchase counts.
 
 crm_long <- crm_data |>
   select(region, customer_id, contains("2018")) |> 
@@ -49,17 +50,9 @@ crm_long
 
 ```{r}
 
-# This code uses the new long dataframe to summarize the 2018 transactions by region.
-
-# This gives us the total number of transactions and average number of transactions per customer per month for each region
-# this would have been very difficult to compute using data in the wide format
-
-crm_long |> 
-  group_by(region) |> 
-  summarize(
-    total_transactions = sum(transactions),
-    avg_transactions = mean(transactions)
-  )
+# Report 2018 purchase activity for each region using crm_long.
+# Show the total purchases and average purchases per customer per month,
+# including months with zero purchases.
 ```
 
 ### Pivot Wider
@@ -104,15 +97,8 @@ crm_long
 
 ```{r}
 
-# This code allows us to pinpoint which month has the most transactions for 2018 in each region.
-
-crm_long |> 
-  group_by(month, region) |> 
-  summarize(
-    total_transactions = sum(transactions),
-    avg_transactions = mean(transactions)
-  ) |> 
-  arrange(desc(avg_transactions))
+# Report total purchases and average purchases per customer for every
+# region-month in 2018. Display all 48 combinations, highest average first.
 ```
 
 ### Unite Columns
@@ -139,13 +125,14 @@ crm_long
 
 ```{r}
 
-# This code plots a time series of the transactions
+# Plot average monthly purchases per customer in each region.
 
 crm_long |> 
   group_by(date, region) |> 
   summarize(
     total_transactions = sum(transactions),
-    avg_transactions = mean(transactions)
+    avg_transactions = mean(transactions),
+    .groups = "drop"
   ) |> 
   ggplot(aes(x = date, y = avg_transactions, color = region)) +
   geom_line() +
@@ -156,7 +143,7 @@ crm_long |>
 
 ```{r}
 
-# This code creates a vector. What data type did R treat all three items as?
+# This creates an atomic vector. What storage type do all three values share?
 
 vector_example <- c(1, 2, "three")
 
@@ -165,14 +152,15 @@ vector_example
 
 ```{r}
 
-# This code creates a tibble to demonstrate how different types can be combined.
+# Different columns can have different types: integer IDs and character states.
 
 tibble(id = 1:3, state = "AZ")
 ```
 
 ```{r}
 
-# This code displays our first example as a tibble, so that each item can retain its original type.
+# This creates a one-column tibble; its values are still character.
+# Converting the vector to a tibble does not recover its original numeric types.
 
 as_tibble(vector_example)
 ```
@@ -185,7 +173,7 @@ Suppose you are building a ggplot visualization that shows the distributions of 
 
 # This code saves the zip codes.
 
-zip_codes <- c(30301, 60614, 90210, 10001, 73301, 02138, 44101, 84101, 19104, 96815)
+zip_codes <- c(30301, 60614, 90210, 10001, 73301, 15213, 44101, 84101, 19104, 96815)
 
 glimpse(zip_codes)
 ```
@@ -196,9 +184,12 @@ glimpse(zip_codes)
 
 ```
 
+Store identifiers such as `"02138"` as character from the outset. Once a leading zero is lost in numeric storage, `as.character()` cannot restore it.
+
 ```{r}
 
-# This code uses coercion to order the bars in a bar chart.
+# Create a factor whose levels run from the most common region to the least.
+# geom_bar() counts customers in each region automatically.
 
 crm_data |> 
   mutate(region = fct_infreq(region)) |> 
@@ -208,7 +199,7 @@ crm_data |>
 
 ```{r}
 
-# This code reverses that order.
+# Reverse the factor-level order used by the plot; the row order is unchanged.
 
 crm_data |> 
   mutate(region = region |> fct_infreq() |> fct_rev()) |> 
@@ -218,7 +209,11 @@ crm_data |>
 
 ### Live Coding Exercise
 
-Let's return to the motivating example. Patagonia has requested a report on sales trends over time. Let's put together a plot to go in that report.
+Patagonia wants a plot that tells a useful story about customer purchase activity over time using these historical records.
+
+- Which measure and time period would be useful to the client?
+- How should we interpret an increase in purchase activity?
+- Which assumptions or limitations could change our interpretation?
 
 ```{r}
 
