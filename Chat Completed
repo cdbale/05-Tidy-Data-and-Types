@@ -1,0 +1,13 @@
+LECTURE 05 COMPLETED WORK
+Append-only completion log.
+
+R1. Rename the repository from 05-Quarto-and-Tidy-Data to 05-Tidy-Data-and-Types.
+Decision: Approve - explicitly requested by the user.
+Status: Verified.
+GitHub: https://github.com/cdbale/05-Tidy-Data-and-Types
+Local: C:\Users\Cam\Repos\Teaching\MKTG-411\05-Tidy-Data-and-Types
+Updated origin fetch/push URL to the renamed GitHub repository. main tracks
+origin/main; both matched 3d9030bcbeddcb30bd5e3d5b75bfdfad189fd62d after fetch.
+Original working tree was clean. No lecture content changed during the rename.
+GitHub Pages reports built from main / at the new URL; the existing 43-slide
+deck was inspected at https://cdbale.github.io/05-Tidy-Data-and-Types/.
