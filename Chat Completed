@@ -169,3 +169,17 @@ U2. Remove original slide 3, the debugging comic with the green ball.
 Decision: Approve - explicitly requested in Chat To Do. Status: Verified.
 Removed the second image-only slide and monsters_debugging.png reference.
 Image asset retained. Today's Learning Goals now immediately follows the title.
+
+G2. Commit and push the approved lecture source update.
+Decision: Approve - standing completion step for approved lecture edits.
+Status: Verified.
+Commit 3b16a9115a4bd7e7cd487d85293cec0b37d18c65 was pushed to origin/main at
+https://github.com/cdbale/05-Tidy-Data-and-Types.git. HEAD, origin/main and the
+live remote main reference matched after fetch. Commit contains only approved
+Rmd/starter/solution source changes and tracking records. Final diff check passed.
+Only the pre-existing, unrelated .Rhistory remains untracked. No approved source
+changes are uncommitted or unpushed; verification notes receive a closeout commit.
+Final skill audit: slides, exercise source, starter alignment, prior-material
+reduction, and GitHub synchronization Verified. Canvas instructions, grading
+note/solution, starter upload and Pages hyperlink remain Needs update, deferred
+by user as items 8-11. Generated slides and Word solution remain unchanged.

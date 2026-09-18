@@ -98,8 +98,8 @@ SKILL CHECKLIST AUDIT - AFTER APPROVED SOURCE EDITS
 5 Canvas exercise: Needs update - item 8 remains pending by user request.
 6 Canvas rubric note: Needs update - item 9 remains pending by user request.
 7 Canvas starter upload: Needs update - item 10 remains pending by user request.
-8 GitHub: authorized source and tracking edits prepared for commit/push; inspect
-  the resulting commit and remote equality before reporting completion.
+8 GitHub: Verified - approved source changes pushed in 3b16a91; HEAD,
+  origin/main and live refs/heads/main matched. Only unrelated .Rhistory remains.
 9 Canvas Pages hyperlink: Needs update - item 11 remains pending by user request.
   Revised slides are not rendered/published; existing HTML is unchanged.
 Word solution: deferred by user; Exercise 05 Solution.docx is the old version.
