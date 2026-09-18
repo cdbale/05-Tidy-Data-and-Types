@@ -409,3 +409,22 @@ No approved publication work remains. Solution release is unchanged
 (Unpublished); selecting a release date/publishing it remains unrequested.
 Word regeneration is deferred. The user's local deletion of Exercise 05
 Solution.docx and .Rhistory remain excluded from commits.
+
+U7. Add a standalone Exercise 4 solution under the Exercise 4 Canvas header,
+like previous exercises, available at 5pm on the due date.
+Decision: Approve - explicitly requested by the user. Status: Verified.
+Added the existing updated Exercise-04-Solution.qmd (file 13808474) as its own
+module file link, item 3281057, in the Data module (415181). Positioned under
+the Exercise 4 header, immediately after Grade Exercise 4 and before Quiz 1,
+with one level of indentation, matching previous exercise solution links.
+https://byu.instructure.com/courses/38688/modules/items/3281057
+Scheduled availability for Tue, Sep 29, 2026 at 5pm, Exercise 4's due date.
+No closing date; inherited course visibility retained. Verified saved settings
+after refresh by reopening the file permissions dialog, and confirmed exactly
+one solution module link in the intended position. Existing Grade Exercise 4
+link refers to the same file and shares the scheduled availability.
+No duplicate file, source change, or Word rendering was required.
+All nine skill checklist items remain Verified; the prior deferred Canvas
+solution-release entry below is now completed and superseded by this request.
+- Exercise-04-Solution.qmd remains Unpublished in Canvas, preserving its
+  previous release setting. Publishing or scheduling release is not requested.
