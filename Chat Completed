@@ -224,3 +224,188 @@ tracking files committed, including the user's relevant Data Types/Coercion
 source edits. No authorized source changes remain uncommitted. Pre-existing
 HTML changes, Word deletion and .Rhistory remain outside this commit. Items
 8-11 remain pending; these final verification notes receive a closeout commit.
+
+ARCHIVED FINAL PENDING CHECKLIST (HISTORICAL; SUPERSEDED BELOW)
+
+LECTURE 05 REVIEW - 2026-09-18
+Agent-authored review. Items 1-7 and U1-U6 are Verified in Chat Completed.
+Items 8-11 remain pending by user request; Word regeneration is deferred.
+Choose Approve, Alter, or Reject for each numbered item.
+
+EXPLICITLY REQUESTED WORK - R1 VERIFIED; SEE CHAT COMPLETED
+ORIGINAL REVIEW INVENTORY - HISTORICAL SNAPSHOT BEFORE APPROVED EDITS
+- Verified repository boundary using Git metadata and its authoritative source:
+  05 Tidy Data and Types.Rmd (ioslides_presentation, widescreen, style.css).
+- Existing outputs: index.html and 05-Tidy-Data-and-Types.html; identical SHA256
+  CA95582735197D75E2E3CE1101A90BEC9B2564D3C4BD6FBFC5CD48A3650B7375.
+- Student starter: 05-starter-code.qmd (Quarto Word output).
+- Exercise: concluding slide and instructions in Exercise 05 Solution.qmd.
+- Solution/rubric: Exercise 05 Solution.qmd and Exercise 05 Solution.docx.
+  Both contain the same five-point rubric. DOCX text inspected; no visual QA.
+- Data: customer_data.csv and store_transactions.csv; 10,531 unique IDs each,
+  no unmatched customer IDs, no missing monthly transaction values; 168 months
+  from jan_2005 through dec_2018. Asset inventory: 10 files in Figures/ plus CSS.
+- No applicable AGENTS.md found in checked ancestors or lecture tree; no local
+  README, build script, workflow or additional rendering configuration found.
+- Prior material reviewed: lectures 02 (imports, joins, select/mutate/arrange,
+  pipes), 03 (plots, factors, fct_reorder), 04 (grouped summaries, dates, lines).
+- Canvas verified via Chrome extension: course 38688, MKTG 411-001: Marketing
+  Analytics, Fall 2026; includes section-specific dates for MKTG 411-002.
+- Exercise 3 (1452125) belongs to lecture 04, confirmed by that lecture and its
+  completed tracking record. Exercise 4 (1452127), immediately after lecture 05,
+  has an empty description, five points, Sep 29 due dates, Oct 6 close dates.
+- Grade Exercise 4 (1452145) has general grading instructions, one point,
+  Oct 6 dates, and no rubric-location note. No solution module item accompanies
+  Exercise 4. Do not overwrite Exercise 3 or the later linear-model Exercise 5.
+- Canvas 05-starter-code.qmd module item 3180624 refers to file 13545263;
+  slide attachment item 3180623 refers to file 13545254. Remote starter contents
+  were not downloaded or compared byte-for-byte.
+- Canvas 05-Slides currently points to
+  https://cdbale.github.io/05-Quarto-and-Tidy-Data/#1 (old repository path).
+- GitHub Pages source: main /, legacy build; renamed deployment reported built
+  at 2026-09-18T15:43:21Z from 3d9030bcbeddcb30bd5e3d5b75bfdfad189fd62d.
+- R parse-only checks passed: 28 slide chunks, 21 starter chunks, eight solution
+  chunks; all fences closed. Base-R data checks passed. Sandbox R lacks
+  tidyverse, so full tidyverse execution was not performed. No rendering,
+  knitting, slide generation, or lecture-content edits performed.
+- Lecture already ends with its exercise. Live coding is already open-ended;
+  retain that design. No condensation review was requested or performed.
+
+NUMBERED SUGGESTIONS
+8. Post the finalized exercise in Canvas Exercise 4.
+   Target: https://byu.instructure.com/courses/38688/assignments/1452127
+   Issue/evidence: description says no additional details were added.
+   Change: post the finalized brief from 6 with input references and output
+   requirements; preserve points, dates, submission settings, and sections.
+   Effect: depends on 6; do not modify Exercise 3 or Exercise 5.
+   Decision: PENDING - Approve / Alter / Reject. Status: Needs update.
+
+9. Supply the matching solution and rubric reference in Canvas.
+   Target: Grade Exercise 4, assignment 1452145, and the matching course
+   solution attachment/module target to be resolved before upload.
+   Issue/evidence: grading text has no rubric-location note; no Exercise 4
+   solution appears alongside that assignment in Modules. Local solution
+   source and DOCX do contain the required five-point rubric.
+   Change: add "The grading rubric is included in the Exercise 4 solution."
+   and link to the finalized solution; inspect course Files for an existing
+   intended attachment before replacing/adding it. Preserve release settings.
+   Effect: depends on 6; course Files target/release must be confirmed before
+   uploading. Do not invent a rubric or silently expose the solution early.
+   Decision: PENDING - Approve / Alter / Reject. Status: Needs update.
+
+10. Replace the Canvas starter with the finalized local version.
+    Target: course 38688, 05-starter-code.qmd, module item 3180624/file 13545263.
+    Issue/evidence: the local starter exists and would change under 3-5/7.
+    Change: replace the intended file through Chrome after source checks,
+    preserve its published status, and verify the module resolves to the new
+    artifact without competing versions. No assignment attachment assumed:
+    the observed current target is a course-module file.
+    Effect: depends on all approved starter edits; no upload performed yet.
+    Decision: PENDING - Approve / Alter / Reject. Status: Needs update.
+
+11. Update the Canvas slide URL and publish any approved slide revisions.
+    Target: Canvas 05-Slides and GitHub Pages at
+    https://cdbale.github.io/05-Tidy-Data-and-Types/.
+    Issue/evidence: Canvas still has the old repository path. The new Pages
+    URL serves the existing 43-slide deck, including all reviewed issues.
+    Change: update the Canvas hyperlink to the new published path and verify
+    it in a fresh load. For approved source edits, use user-rendered HTML or
+    separately authorized rendering; then push, verify the deployment/content,
+    and use a deployment-tied query value if caching requires it. Update the
+    Canvas HTML attachment only if that additional replacement is approved.
+    Effect: URL repair can proceed independently; revised published content
+    depends on approved slide edits and rendering. No slide render authorized.
+    Decision: PENDING - Approve / Alter / Reject.
+    Status: Needs update (URL); Blocked (future revised slide output).
+
+SKILL CHECKLIST AUDIT - AFTER APPROVED SOURCE EDITS
+1 Slides: Verified - approved items and U1-U6 completed in source; no render requested.
+2 Exercise: Verified - item 6 completed in Quarto source; brief matches slides,
+  ends the lecture, retains five-point rubric. Word output explicitly deferred.
+3 Starter alignment: Verified - matching inputs/code/comments and R checks.
+4 Prior-material reduction: Verified - both eligible steps removed as requested.
+5 Canvas exercise: Needs update - item 8 remains pending by user request.
+6 Canvas rubric note: Needs update - item 9 remains pending by user request.
+7 Canvas starter upload: Needs update - item 10 remains pending by user request.
+8 GitHub: Verified - requested source changes pushed in 4aec52e; HEAD,
+  origin/main and live refs/heads/main matched. Remaining user work is excluded.
+9 Canvas Pages hyperlink: Needs update - item 11 remains pending by user request.
+  No render or output publication performed in this update. The pre-existing
+  local 05-Tidy-Data-and-Types.html change remains unstaged; index.html unchanged.
+Word solution: regeneration deferred; the user has locally deleted the old
+  Exercise 05 Solution.docx. Its deletion remains unstaged, as does .Rhistory.
+No approved source work remains active. Full publication remains incomplete.
+
+
+PUBLICATION CLOSEOUT - 2026-09-18
+User explicitly approved items 8, 9, 10, and 11, requested the latest starter
+and HTML uploads, and confirmed reviewing the exercise solution. The user
+rendered the HTML slides and index; no render was performed by the agent.
+The archived pending decisions above are superseded by these approvals.
+
+8. Decision: Approve. Status: Verified.
+Exercise 4 (course 38688, assignment 1452127) now contains the exact final
+exercise brief from slides 42-44, including customer-group overlap wording.
+Saved description inspected. Five points, file uploads, Sep 29 due dates and
+Oct 6 close dates for both sections were preserved.
+
+9. Decision: Approve. Status: Verified.
+Located existing Exercise-04-Solution.qmd in course Files and replaced it
+with the reviewed local 9,842-byte source: new Canvas file 13808474 (10 KB;
+preview reports 9.61 KB). Its existing Unpublished status and inherited course
+visibility were preserved; no release date was added and it is not yet
+student-accessible. Grade Exercise 4 (1452145) retains its original grading
+instructions and now says the rubric is included in the Exercise 4 solution,
+linked to /courses/38688/files/13808474/download?download_frd=1. Saved note
+and link inspected; one point, upload settings and Oct 6 section dates remain.
+Word regeneration remains explicitly deferred. No Word solution uploaded.
+
+10. Decision: Approve. Status: Verified.
+Replaced 05-starter-code.qmd with the finalized 4,994-byte local source;
+Canvas file 13808471, published, 4.88 KB. Module item 3180624 resolves to it.
+Exactly one file of that name remains in course Files. Fresh R checks parsed
+28 slide chunks, 21 starter chunks and 8 solution chunks; every supplied
+starter expression occurs in the slides. Seven intentional empty chunks
+remain. With setup supplied only in an isolated check environment, starter
+code evaluated successfully, produced 126,372 customer-month rows with Date
+values, and all three starter plots passed ggplot_build(). No starter edit
+was necessary. User's prior-material reduction of both eligible steps retained.
+
+11. Decision: Approve, including HTML attachment replacement explicitly
+requested in the latest message. Status: Verified.
+Published user-rendered 05-Tidy-Data-and-Types.html and index.html with final
+source wording in commit be630eeaef9a477c480daa86f32e82cf79557f4b on main.
+Both local HTML files are 4,432,257 bytes, SHA256
+13D50DDD92628DF8825730D61256D53930731EA06EB74A514D7F0BE551BF00ED.
+GitHub Pages reported built from this commit at 2026-09-18T21:23:39Z.
+Downloaded public Pages HTML matched index.html exactly after CRLF/LF
+normalization (Git normalizes line endings). Canvas HTML attachment replaced
+with file 13808473, published, 4.23 MB; module item 3180623 resolves to it,
+and its preview contains the new goals, code, and final exercise wording.
+Canvas 05-Slides (item 3180622) saved with
+https://cdbale.github.io/05-Tidy-Data-and-Types/?v=be630ee#1
+Reloaded Canvas, clicked that link, and inspected the fresh live 44-slide
+deck. Verified revised goals, plot labels/code, ZIP values, open-ended live
+coding and exercise slides 42-44. Visual check of slide 29 passed.
+
+Canvas upload verification used successful Replace operations, fresh file
+rows, timestamps, sizes, preserved statuses, module targets and HTML preview.
+A subsequent solution download attempt was blocked by Chrome; no downloaded
+Canvas file was used for a byte-for-byte comparison. The public GitHub Pages
+content comparison succeeded independently.
+
+FINAL SKILL CHECKLIST AUDIT
+1 Slides: Verified - final Rmd and user-rendered 44-slide deck inspected.
+2 Exercise: Verified - final brief and reviewed Quarto solution/rubric agree.
+3 Starter alignment: Verified - all supplied expressions match; runtime check.
+4 Prior-material reduction: Verified - both approved complete steps remain gaps.
+5 Canvas exercise: Verified - saved Exercise 4 description matches slides.
+6 Canvas rubric note: Verified - Grade Exercise 4 note and correct solution link.
+7 Canvas starter upload: Verified - new published file and module destination.
+8 GitHub: Verified - deck/source commit pushed; HEAD matched live main.
+9 Canvas Pages hyperlink: Verified - saved versioned URL opens deployed deck.
+
+No approved publication work remains. Solution release is unchanged
+(Unpublished); selecting a release date/publishing it remains unrequested.
+Word regeneration is deferred. The user's local deletion of Exercise 05
+Solution.docx and .Rhistory remain excluded from commits.
