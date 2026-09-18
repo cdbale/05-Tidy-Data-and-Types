@@ -183,3 +183,34 @@ Final skill audit: slides, exercise source, starter alignment, prior-material
 reduction, and GitHub synchronization Verified. Canvas instructions, grading
 note/solution, starter upload and Pages hyperlink remain Needs update, deferred
 by user as items 8-11. Generated slides and Word solution remain unchanged.
+
+FOLLOW-UP SOURCE CHANGES - 2026-09-18
+
+U3. Add appropriate labels (title, x-axis, y-axis) to the plot of average monthly purchases per customer in each region (slide 29).
+Decision: Approve - explicitly requested by the user in Chat To Do.
+Status: Verified.
+Added labs() to the displayed and hidden slide plot blocks and the matching starter block: title = Monthly Purchases per Customer by Region; x = Month (2018); y = Average purchases per customer.
+
+U4. Remove description of "02138" from slide 37.
+Decision: Approve - explicitly requested by the user in Chat To Do.
+Status: Verified.
+Removed the 02138 explanatory paragraph from the Rmd and starter. The existing numeric ZIP example is preserved.
+
+U5. Make sure the starter code is still consistent with the description and code in the slides after the changes I made to the slides.
+Decision: Approve - explicitly requested by the user in Chat To Do.
+Status: Verified.
+Preserved the user edits to the Data Types and Coercion slides. Updated the starter heading to Data Types, aligned vector/type and numeric-value comments, added a Coercion heading, and synchronized plot labels and live-coding wording. All seven intentional empty chunks remain empty.
+
+U6. For Live Coding Exercise: change second question to refer to a change in purchase activity (rather than an increase)
+Decision: Approve - explicitly requested by the user in Chat To Do.
+Status: Verified.
+Changed the second live-coding question in both sources to: How should we interpret a change in purchase activity?
+
+Verification: 28 slide chunks and 21 starter chunks parsed. Starter code ran
+with setup supplied only in an isolated check environment. Seven intentional
+empty chunks preserved. Both slide plot blocks and the starter plot have
+identical parsed code; ggplot_build() validated the plot and its title/x/y
+labels. ZIP paragraph removal and live-coding wording checked in both sources.
+No slide render, Canvas edit, or Word generation performed. Items 8-11 stay
+pending. Pre-existing user HTML modifications, Word-file deletion and .Rhistory
+are outside this source update and excluded from the commit.

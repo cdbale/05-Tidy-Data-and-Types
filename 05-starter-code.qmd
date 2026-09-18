@@ -136,14 +136,19 @@ crm_long |>
   ) |> 
   ggplot(aes(x = date, y = avg_transactions, color = region)) +
   geom_line() +
-  scale_x_date(date_breaks = "month", date_labels = "%b")
+  scale_x_date(date_breaks = "month", date_labels = "%b") +
+  labs(
+    title = "Monthly Purchases per Customer by Region",
+    x = "Month (2018)",
+    y = "Average purchases per customer"
+  )
 ```
 
-### Data Classes and Types
+### Data Types
 
 ```{r}
 
-# This creates an atomic vector. What storage type do all three values share?
+# This creates a vector. What data type do all three values share?
 
 vector_example <- c(1, 2, "three")
 
@@ -157,10 +162,12 @@ vector_example
 tibble(id = 1:3, state = "AZ")
 ```
 
+### Coercion
+
 ```{r}
 
 # This creates a one-column tibble; its values are still character.
-# Converting the vector to a tibble does not recover its original numeric types.
+# Converting the vector to a tibble does not recover its original numeric values.
 
 as_tibble(vector_example)
 ```
@@ -183,8 +190,6 @@ glimpse(zip_codes)
 # Use this space to coerce the zip codes into a more appropriate type.
 
 ```
-
-Store identifiers such as `"02138"` as character from the outset. Once a leading zero is lost in numeric storage, `as.character()` cannot restore it.
 
 ```{r}
 
@@ -212,7 +217,7 @@ crm_data |>
 Patagonia wants a plot that tells a useful story about customer purchase activity over time using these historical records.
 
 - Which measure and time period would be useful to the client?
-- How should we interpret an increase in purchase activity?
+- How should we interpret a change in purchase activity?
 - Which assumptions or limitations could change our interpretation?
 
 ```{r}

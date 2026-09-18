@@ -282,7 +282,12 @@ crm_long |>
   ) |> 
   ggplot(aes(x = date, y = avg_transactions, color = region)) +
   geom_line() +
-  scale_x_date(date_breaks = "month", date_labels = "%b")
+  scale_x_date(date_breaks = "month", date_labels = "%b") +
+  labs(
+    title = "Monthly Purchases per Customer by Region",
+    x = "Month (2018)",
+    y = "Average purchases per customer"
+  )
 ```
 
 ---
@@ -297,14 +302,19 @@ crm_long |>
   ) |> 
   ggplot(aes(x = date, y = avg_transactions, color = region)) +
   geom_line() +
-  scale_x_date(date_breaks = "month", date_labels = "%b")
+  scale_x_date(date_breaks = "month", date_labels = "%b") +
+  labs(
+    title = "Monthly Purchases per Customer by Region",
+    x = "Month (2018)",
+    y = "Average purchases per customer"
+  )
 ```
 
-## Data Classes and Types
+## Data Types
 
-We've been using **tibbles**, a modern form of **data frame**. Each column is a vector. The columns can have different types, while the elements within an **atomic vector** share one storage type, such as double, integer, or character.
+We've been using **tibbles**, a modern form of **data frame**. Each column in a tibble (dataframe) is a vector. Dataframes can contain multiple columns with different types, but the elements **within a vector** share one data type, such as double, integer, or character.
 
-**Classes** add meaning and behavior: a `Date` represents dates, and a factor represents categories using integer codes and named levels. Combining numbers and text with `c()` **coerces** these values to character:
+For example: combining numbers and text with `c()` (a vector) **coerces** all values to characters:
 
 ```{r}
 vector_example <- c(1, 2, "three")
@@ -322,13 +332,13 @@ tibble(id = 1:3, state = "AZ")
 
 ## Coercion
 
-Sometimes we need to change an object's form. `as_tibble()` puts this vector into a one-column tibble:
+Sometimes we need to change an object's form. For example, `as_tibble()` puts our example vector into a one-column tibble:
 
 ```{r}
 as_tibble(vector_example)
 ```
 
-The column is still character. Converting to a tibble does not recover the original numeric values or their types. When would a table be more useful than a vector?
+The column still contains the ``character`` type. Converting to a tibble does not recover the original numeric values. When would a table be more useful than a vector?
 
 We can similarly coerce data types with `as.*()` functions (e.g., `as.numeric()` and `as.character()`).
 
@@ -366,8 +376,6 @@ glimpse(zip_codes)
 
 ---
 
-Store identifiers such as `"02138"` as character from the outset. Once a leading zero is lost in numeric storage, `as.character()` cannot restore it.
-
 The `fct_*()` functions help create factors and manage the order of their levels. Here, the most common region comes first:
 
 ```{r}
@@ -398,7 +406,7 @@ crm_data |>
 Patagonia wants a plot that tells a useful story about customer purchase activity over time using these historical records.
 
 - Which measure and time period would be useful to the client?
-- How should we interpret an increase in purchase activity?
+- How should we interpret a change in purchase activity?
 - Which assumptions or limitations could change our interpretation?
 
 ## Wrapping Up
