@@ -11,3 +11,13 @@ origin/main; both matched 3d9030bcbeddcb30bd5e3d5b75bfdfad189fd62d after fetch.
 Original working tree was clean. No lecture content changed during the rename.
 GitHub Pages reports built from main / at the new URL; the existing 43-slide
 deck was inspected at https://cdbale.github.io/05-Tidy-Data-and-Types/.
+
+G1. Commit and push the authorized review tracking records.
+Decision: Approve - standing completion step in the invoked lecture skill.
+Status: Verified.
+Committed only Chat To Do and Chat Completed in d5479bde96636b5fe733f0617baf50c96ac98d3f.
+Pushed main to origin at https://github.com/cdbale/05-Tidy-Data-and-Types.git.
+After fetch, HEAD, origin/main and live refs/heads/main matched that commit;
+the working tree was clean. These completion notes receive a closeout commit.
+All eleven new suggestions remain pending in Chat To Do. No content edits,
+Canvas writes, or renders were performed. Rename R1 has no active duplicate.

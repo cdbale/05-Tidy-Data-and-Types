@@ -197,8 +197,8 @@ SKILL CHECKLIST AUDIT
 5 Canvas exercise: Needs update - suggestion 8, blank assignment verified.
 6 Canvas rubric note: Needs update - suggestion 9; local rubric exists.
 7 Canvas starter upload: Needs update - suggestion 10, local artifact exists.
-8 GitHub: renamed main/origin/main verified at review; commit/push only these
-  authorized tracking records and verify again as the review completion step.
+8 GitHub: Verified - review records pushed in d5479bd; HEAD, origin/main and
+  live refs/heads/main matched; working tree clean. See Chat Completed.
 9 Canvas Pages hyperlink: Needs update; future changed deck blocked pending
   approved edits and an explicit render request or user-supplied rendered HTML.
 The full lecture update is not complete; the new suggestions await decisions.
