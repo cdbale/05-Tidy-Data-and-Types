@@ -1,22 +1,11 @@
 LECTURE 05 - 2026-09-18
-Items 1-11, R1 and U1-U7 are Verified; see Chat Completed for evidence.
+Items 1-11, R1 and U1-U8 are Verified; see Chat Completed for evidence.
 No approved work remains active.
 
 DEFERRED / NOT REQUESTED
 - Word solution regeneration remains deferred by the user's explicit choice.
-- Local deletion of Exercise 05 Solution.docx and untracked .Rhistory remain
-  outside the approved commits.
 
 USER REQUESTED CHANGES - PRESERVE THIS SECTION
 Add requests or decisions here after discussing the numbered suggestions.
 
 I deleted the decision history so as not to clutter the requests I am making.
-
-U8. Republish the user-updated lecture 05 materials (2026-09-24).
-Decision: Approve - explicit user request. Status: In progress.
-- Commit and push changed lecture sources, rendered HTML and index.
-- Replace Canvas HTML and starter; verify bytes and module destinations.
-- Verify Exercise 4 instructions and Tuesday Sep 29 section due times.
-- Align and post the solution; release Sep 29 at 5pm America/Denver.
-- Verify Grade Exercise 4 links the solution as the rubric source.
-- Refresh Canvas's Pages hyperlink and verify the deployed slide contents.

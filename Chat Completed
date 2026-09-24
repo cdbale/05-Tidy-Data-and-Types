@@ -428,3 +428,57 @@ All nine skill checklist items remain Verified; the prior deferred Canvas
 solution-release entry below is now completed and superseded by this request.
 - Exercise-04-Solution.qmd remains Unpublished in Canvas, preserving its
   previous release setting. Publishing or scheduling release is not requested.
+
+U8. Republish the user-updated lecture 05 materials (2026-09-24).
+Decision: Approve - explicit user request. Status: Verified.
+- Commit and push changed lecture sources, rendered HTML and index.
+- Replace Canvas HTML and starter; verify bytes and module destinations.
+- Verify Exercise 4 instructions and Tuesday Sep 29 section due times.
+- Align and post the solution; release Sep 29 at 5pm America/Denver.
+- Verify Grade Exercise 4 links the solution as the rubric source.
+- Refresh Canvas's Pages hyperlink and verify the deployed slide contents.
+
+Verification completed 2026-09-24:
+- Published lecture changes on main in 37458ea5057920073d161773c1b85e8d9823e5aa.
+  User-rendered HTML and index are identical, SHA256
+  4E5B214EA556A38F50095F18DEF4B40FCE7E7858C5CBFF12B581184E36CB7D73.
+- Parsed 28 slide, 21 starter, and 8 solution R chunks. Every supplied starter
+  expression occurs in the slides; seven intentional empty chunks remain.
+  Starter and solution code ran in isolated check environments; seven plots
+  passed ggplot_build(). Recent group: 8,443; frequent group: 3,046.
+- Matched the solution's repeated brief exactly to the final slides by changing
+  'The two groups may overlap' to 'The two customer groups may overlap'.
+  Reviewed example definitions, outputs, interpretations, and five-point rubric.
+- Canvas course 38688, Fall 2026: replaced HTML file 13867050, starter 13867010,
+  and solution 13867054. Downloaded each through the API's public_url endpoint;
+  every SHA256 matches its local file. Exactly one of each filename remains.
+  Published module items 3180623, 3180624, and 3281057 point to those files.
+- Exercise 4 (1452127) description already matches all final slide paragraphs
+  and bullets; fresh readback verified. Due Tuesday September 29, 2026:
+  section 001 at 2:00pm and section 002 at 3:30pm America/Denver. Existing
+  appropriate due times and unrelated assignment settings retained.
+- Standalone solution remains under the Exercise 4 header, after Grade Exercise 4.
+  unlock_at=2026-09-29T23:00:00Z (5:00pm America/Denver), no closing date.
+  Published file link, hidden=false, locked=false with scheduled unlock verified.
+- Grade Exercise 4 (1452145) explicitly names the solution as the rubric source.
+  Its link targets new file 13867054; removed the prior URL verifier parameter.
+  Saved description verified through a fresh API read.
+- Canvas 05-Slides item 3180622 now points to
+  https://cdbale.github.io/05-Tidy-Data-and-Types/?v=37458ea#1
+  Pages reported built from 37458ea; a fresh fetch through the saved Canvas URL
+  matches local index.html exactly after CRLF/LF normalization.
+
+FINAL SKILL CHECKLIST AUDIT (U8)
+1 Slides: Verified - inspected final source and existing user-rendered HTML.
+2 Exercise: Verified - solution brief, example analysis, and rubric match slides.
+3 Starter alignment: Verified - expression comparison, parse and runtime checks.
+4 Prior-material reduction: Verified - previously approved intentional gaps retained.
+5 Canvas exercise: Verified - every instruction paragraph/bullet matches slides.
+6 Canvas rubric note: Verified - saved note links to current solution file.
+7 Canvas starter upload: Verified - downloaded hash, unique file and module link.
+8 GitHub: Verified - lecture publication pushed; local HEAD matched live main.
+9 Canvas Pages hyperlink: Verified - saved URL freshly fetched and content matched.
+
+No approved U8 work remains. Word solution regeneration remains deferred.
+The older notes excluding the deleted Word file and .Rhistory were superseded
+by the user's prior commit 1bc1917; neither was changed in U8.
