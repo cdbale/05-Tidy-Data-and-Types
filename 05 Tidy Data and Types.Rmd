@@ -87,6 +87,12 @@ crm_data |>
   select(region, customer_id, contains("2018"))
 ```
 
+## We Need to Transform (Tidy) Our Data
+
+Want average transactions per month per customer? 
+
+Then we need one variable for month and one for customer.
+
 ## Tidy Data
 
 **Tidy data** is defined as follows:
@@ -95,7 +101,7 @@ crm_data |>
 - Each variable has its own column.
 - Each value has its own cell.
 
-For monthly purchase activity, one observation is one **customer in one month**. Month and purchase count are separate variables. This calls for a **longer** dataset. Whether a longer or wider layout is appropriate depends on the variables and the task; {tidyr} helps us move between them.
+For monthly purchase activity, one observation is one **customer in one month**. Month and purchase count are separate variables. This calls for a **longer** dataset. Whether a longer or wider layout is appropriate depends on the variables and the task; {tidyr} helps us move between them. **Tidy data is usually longer**.
 
 ---
 
@@ -103,7 +109,7 @@ For monthly purchase activity, one observation is one **customer in one month**.
 ![](Figures/wide_long.png){width=750px}
 </center>
 
-## Pivot Longer
+## Another Tell for Needing Longer Data
 
 One sign that data needs reshaping is when column names contain values of a variable. Here, `jan_2018` and `feb_2018` are values of the month variable.
 
@@ -338,7 +344,7 @@ Sometimes we need to change an object's form. For example, `as_tibble()` puts ou
 as_tibble(vector_example)
 ```
 
-The column still contains the ``character`` type. Converting to a tibble does not recover the original numeric values. When would a table be more useful than a vector?
+The column still contains the ``character`` type. Converting to a tibble does not recover the original numeric values.
 
 We can similarly coerce data types with `as.*()` functions (e.g., `as.numeric()` and `as.character()`).
 
@@ -403,11 +409,11 @@ crm_data |>
 
 ## Live Coding Exercise
 
-Patagonia wants a plot that tells a useful story about customer purchase activity over time using these historical records.
+Patagonia wants a plot showing customer purchase activity over time.
 
 - Which measure and time period would be useful to the client?
 - How should we interpret a change in purchase activity?
-- Which assumptions or limitations could change our interpretation?
+- What are some limitations of our approach?
 
 ## Wrapping Up
 

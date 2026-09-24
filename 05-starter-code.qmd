@@ -214,11 +214,11 @@ crm_data |>
 
 ### Live Coding Exercise
 
-Patagonia wants a plot that tells a useful story about customer purchase activity over time using these historical records.
+Patagonia wants a plot showing customer purchase activity over time.
 
 - Which measure and time period would be useful to the client?
 - How should we interpret a change in purchase activity?
-- Which assumptions or limitations could change our interpretation?
+- What are some limitations of our approach?
 
 ```{r}
 
